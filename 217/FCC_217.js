@@ -30,23 +30,40 @@ var contacts = [
 function lookUpProfile(firstName, prop){
 // Only change code below this line
   var i = 0;
-  var matches = 0;
+  var matches = false; // flag for whether or not a contact exists
+  
+  console.log("\t\t\t--><-- ");
   console.log("> contacts.length: " + contacts.length);
+  console.log("> Searching for: " + firstName + ", " + prop);
+  
   while (i < contacts.length){
-    //console.log("> Contact Number: " + i + ", Searching for: " + firstName + ", " + prop);
-    //console.log("> contacts[i].firstName: " + contacts[i].firstName);
     if (firstName == contacts[i].firstName){
-    console.log("> Contact Number: " + (i+1) + ", Searching for: " + firstName + ", " + prop);
       console.log("> " + contacts[i].firstName + " is a CONTACT!");
-      matches += 1;
+      if(contacts[i][prop]){
+        console.log("> prop = " + contacts[i][prop]);
+        return contacts[i][prop];
+      } else { 
+        console.log("> *************************************");
+        console.log(">>> NO SUCH PROPERTY: " + prop);
+        console.log("> *************************************");
+        return "No such property";
+      }
+      matches = true;
+      
+      for (var j in contacts[i].prop){
+        console.log(">\tFirst Name: " + contacts[i].firstName + " - prop: " + contacts[i].prop);
+      }
     }
     i++;
   }
-  if (matches == 0){
+  
+  if (matches == false){
+    console.log("> *************************************");
     console.log(">>> NO SUCH CONTACT: " + firstName);
+    console.log("> *************************************");
     return "No such contact";
   }
-  console.log(" ");
+  
 // Only change code above this line
 }
 
